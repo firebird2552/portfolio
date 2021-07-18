@@ -1,0 +1,9 @@
+{
+  "name": "Portfolio",
+  "version": "0.1.0",
+  "description": "Fordorth's Portfolio",
+  "main": "index.js",
+  "repository": "https://github.com/firebird2552/portfolio.git",
+  "author": "Fordorth",
+  "license": "MIT"
+}
