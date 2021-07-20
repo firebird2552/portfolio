@@ -1,0 +1,49 @@
+
+
+#main-header {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid black;
+  margin-bottom: 0.5rem;
+}
+
+#branding {
+  display: flex;
+}
+
+#branding #logo img {
+  margin: 0.5rem;
+  width: 50px;
+  height: 50px;
+}
+
+#branding #title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+}
+
+nav ul li {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+nav ul .link {
+  flex: 1 2 100%;
+}
+
+nav ul li a {
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  margin: 0.25rem;
+  padding: 0.5rem;
+}
