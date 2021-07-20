@@ -1,0 +1,42 @@
+#LandingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
+}
+
+#LandingPage div {
+  flex: 1;
+  margin-top: 0.25rem;
+  width: 100%;
+}
+
+#LandingPage .section-header {
+  text-align: center;
+  font-size: x-large;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#Proficiencies {
+  display: flex;
+  flex-direction: column;
+}
+
+#Proficiency {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+#Proficiency div {
+  flex: 1;
+}
+
+#Proficiency header {
+  flex: 1;
+}
+
+#Proficiency progress {
+  flex: 3;
+}

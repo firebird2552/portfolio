@@ -1,0 +1,55 @@
+#post {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+.post-title {
+  text-align: center;
+  font-size: larger;
+}
+
+.post-article {
+  margin: 0.25rem;
+  text-align: justify;
+}
+
+.details-bar {
+  display: flex;
+  border-top: 1px solid black;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.post-likes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.post-like-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-like-heart {
+  font-size: xx-large;
+  color: red;
+}
+
+.post .post-like-count {
+  font-size: medium;
+}
+
+.article-img img {
+  width: 150;
+  height: 150;
+  float: left;
+  padding: 0.15rem 0.5rem;
+}
+
+.article-text {
+  padding: 0.25rem 0.5rem;
+  text-align: justify;
+}
