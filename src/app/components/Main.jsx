@@ -7,6 +7,7 @@ import { Header } from "./Header";
 import { LandingPage } from "./LandingPage";
 import { Projects } from "./Projects";
 import { Contact } from "./Contact";
+import { ProjectDetails } from "./projects/ProjectDetails";
 
 export const Main = () => {
   return (
@@ -17,6 +18,7 @@ export const Main = () => {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/projects" component={Projects} />
           <Route exact path="/contact" component={Contact} />
+          <Route exact path="/project/details/:id" component={ProjectDetails} />
         </Switch>
       </main>
     </Router>
