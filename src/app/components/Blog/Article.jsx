@@ -4,11 +4,9 @@ export const Article = ({ article, title }) => {
   const ParseArticle = () => {
     const GenerateTags = (string) => {
       if (string.includes("img:")) {
-        console.log("String", string);
         let imgUrl = "";
         if (string.includes("{")) {
           let imgJson = JSON.parse(string.slice(4, string.length));
-          console.log("json", imgJson);
           return (
             <div key={imgJson.url} className="article-img">
               <img
