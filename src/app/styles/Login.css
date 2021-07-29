@@ -1,0 +1,30 @@
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.usernameSection,
+.passwordSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.LoginButtonBar {
+  margin-top: 0.25rem;
+  display: flex;
+  justify-content: baseline;
+}
+
+.LoginSubmit,
+.LoginClear {
+  display: flex;
+  flex: 1;
+  text-align: center;
+}
+
+.LoginSubmit button,
+.LoginClear button {
+  background: none;
+  padding: 0.15rem;
+  flex: 1;
+}
