@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { BlogPost } from "./BlogPost";
+import { ConnectedBlogPost as BlogPost } from "./BlogPost";
+import { connect } from "react-redux";
 
-let BlogPosts = [
+/*let BlogPosts = [
   {
     id: "post1",
     title: "Rando Blog Post 1",
@@ -38,9 +39,14 @@ let BlogPosts = [
 let user = {
   username: "Fordorth",
   likedPosts: ["post1"],
-};
+};*/
 
-export const RecentBlogPosts = () => {
+const RecentBlogPosts = (props) => {
+  const { BlogPosts, Users } = props;
+  console.log("BlogPosts", BlogPosts);
+  console.log("users", Users);
+  console.log(props);
+  const user = Users[0];
   const [userData, setUserData] = useState(user);
 
   const ModifyLikedPosts = (event, postId) => {
@@ -89,3 +95,13 @@ export const RecentBlogPosts = () => {
     </div>
   );
 };
+
+const mapStateToProps = ({ BlogPosts, Users }) => {
+  return {
+    BlogPosts: BlogPosts.BlogPosts,
+    Users: Users.Users,
+  };
+};
+
+export const ConnectedRecentBlogPosts =
+  connect(mapStateToProps)(RecentBlogPosts);

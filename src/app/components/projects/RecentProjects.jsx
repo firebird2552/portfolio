@@ -3,7 +3,7 @@ import { Project } from "./Project";
 
 const projects = [
   {
-    name: "meow",
+    title: "meow",
     imageURLs: [
       "https://www.placecage.com/200/300",
       "https://www.placecage.com/g/200/300",
@@ -19,7 +19,7 @@ export const RecentProjects = () => {
     <div>
       <header className="section-header">Recent Projects</header>
       {projects.map((project) => (
-        <Project key={project.name} project={project} />
+        <Project key={project.title} project={project} />
       ))}
       <section></section>
     </div>

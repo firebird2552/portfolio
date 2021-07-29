@@ -25,7 +25,7 @@ export const Project = ({ project }) => {
 
   return (
     <div className="project">
-      <header className="project-title">{project.name}</header>
+      <header className="project-title">{project.title}</header>
       <section className="image-carousel">
         {project.imageURLs.length !== 0 ? (
           <img src={project.imageURLs[currentImage]} />
@@ -55,7 +55,12 @@ export const Project = ({ project }) => {
         {project.shortDescription}
       </section>
       <section className="button-bar">
-        <NavLink to="/products/details" className="view-button">View Details</NavLink>
+        <NavLink
+          to={`/project/details/${project.title}`}
+          className="view-button"
+        >
+          View Details
+        </NavLink>
       </section>
     </div>
   );
