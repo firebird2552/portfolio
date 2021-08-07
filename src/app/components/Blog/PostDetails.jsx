@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { ConnectedBlogPost as BlogPost } from "./BlogPost";
@@ -14,12 +14,12 @@ const PostDetails = (props) => {
     <Redirect to={props.history.goBack()} />;
     return null;
   }
-  return <BlogPost post={post} details={true} auth={props.auth} />;
+  return <BlogPost post={post} details={true} />;
 };
 
-const mapStateToProps = (state) => {
-  return state.BlogPosts;
-};
+const mapStateToProps = (state) => ({
+  BlogPosts: state.BlogPosts,
+});
 
 const mapDispatchToProps = {};
 

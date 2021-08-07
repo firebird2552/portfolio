@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
 import "../styles/GeneralStyle.css";
@@ -12,15 +12,15 @@ import { ConnectedPostDetails as PostDetails } from "./Blog/PostDetails";
 import Login from "./Login";
 import Auth from "../../Auth/Auth";
 import Callback from "../../Callback";
-import { ConnectedAdmin as Admin } from "./admin/admin";
+import { ConnectedAdmin as Admin } from "./admin/Admin";
 import FourOhFour from "./FourOhFour";
+import AuthContext from "../../Auth/AuthContext";
+import { SecureRoute } from "./navigation/SecureRoute";
 
 export const Main = (props) => {
-  console.log("main -> props", props);
-
   let auth = new Auth(props.history);
   return (
-    <div>
+    <AuthContext.Provider value={auth}>
       <Header auth={auth} {...props} />
       <main>
         <Switch>
@@ -33,9 +33,11 @@ export const Main = (props) => {
           <Route exact path="/contact">
             <Contact />
           </Route>
-          <Route exact path="/project/details/:title">
-            <ProjectDetails />
-          </Route>
+          <Route
+            exact
+            path="/project/details/:title"
+            component={ProjectDetails}
+          />
           <Route
             exact
             path="/blog/post/:title"
@@ -46,18 +48,12 @@ export const Main = (props) => {
             path="/callback"
             render={(props) => <Callback auth={auth} {...props} />}
           />
-          <Route path="/admin">
-            {!auth.isAuthenticated() ? (
-              <Redirect to="/404" />
-            ) : (
-              <Admin auth={auth} />
-            )}
-          </Route>
+          <SecureRoute path="/admin" component={Admin} />
 
           <Route path="/404" component={FourOhFour} />
           <Redirect to="/404" />
         </Switch>
       </main>
-    </div>
+    </AuthContext.Provider>
   );
 };

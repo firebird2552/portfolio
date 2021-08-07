@@ -4,7 +4,6 @@ import "../styles/HeaderStyle.css";
 
 export const Header = (props) => {
   const { isAuthenticated, login, logout } = props.auth;
-  console.log(props);
   return (
     <div>
       <header id="main-header">

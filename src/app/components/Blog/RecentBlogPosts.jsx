@@ -98,7 +98,7 @@ const RecentBlogPosts = (props) => {
 
 const mapStateToProps = ({ BlogPosts, Users }) => {
   return {
-    BlogPosts: BlogPosts.BlogPosts,
+    BlogPosts: BlogPosts,
     Users: Users.Users,
   };
 };

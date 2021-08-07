@@ -1,6 +1,14 @@
 import auth0 from 'auth0-js';
 
+const REDIRCET_ON_LOGIN = "redirect_on_login"
+
+let _idToken = null;
+let _accessToken = null;
+let _scopes = null;
+let _expiresAt = null;
+
 export default class Auth {
+
     constructor(history) {
         this.history = history
         this.userProfile = null
@@ -8,12 +16,14 @@ export default class Auth {
             domain: process.env.REACT_APP_AUTH0_DOMAIN,
             clientID: process.env.REACT_APP_AUTH0_CLIENTID,
             redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
+            audience: process.env.REACT_APP_AUT0_AUDIENCE,
             responseType: 'token id_token',
-            scope: "openid profile email"
+            scope: "openid profile email",
         })
     }
 
     login = () => {
+        localStorage.setItem(REDIRCET_ON_LOGIN, JSON.stringify(this.history.location))
         console.log("Logging in")
         this.auth0.authorize()
     }
@@ -23,12 +33,16 @@ export default class Auth {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 console.log(authResult)
                 this.setSession(authResult)
-                this.history.push("/")
+                const redirectLocation = localStorage.getItem(REDIRCET_ON_LOGIN) === "undefined" ?
+                    "/" :
+                    JSON.parse(localStorage.getItem(REDIRCET_ON_LOGIN));
+                this.history.push(redirectLocation)
             } else if (err) {
                 this.history.push("/")
                 alert(`Error: ${err.error}. Check the console for further details`)
                 console.log(err)
             }
+            localStorage.removeItem(REDIRCET_ON_LOGIN)
         })
     }
 

@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
+import AuthContext from "../../../Auth/AuthContext";
 
 import "../../styles/BlogPost.css";
 import { Article } from "./Article";
 
 const BlogPost = (props) => {
+  const auth = useContext(AuthContext);
   console.log(props);
 
   let details = props.details || false;
@@ -14,8 +16,8 @@ const BlogPost = (props) => {
   let login = [];
 
   if (details) {
-    isAuthenticated = props.auth.isAuthenticated;
-    login = props.auth.login;
+    isAuthenticated = auth.isAuthenticated;
+    login = auth.login;
   }
   const today = Date();
 
@@ -106,6 +108,8 @@ const BlogPost = (props) => {
           )}
           {post.comments
             ? post.comments.map((comment) => {
+                if (!comment.approved) return null;
+
                 return (
                   <section key={comment.id} className="comment">
                     <div className="comment-author">{comment.author}</div>

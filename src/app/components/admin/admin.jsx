@@ -1,16 +1,23 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { AdminNavigation } from "../navigation/AdminNavigation";
+import { AdminContent } from "./AdminContent";
 
-const admin = (props) => {
-  return <div></div>;
+const Admin = (props) => {
+  return (
+    <div>
+      <h1>Admin Content</h1>
+      <AdminNavigation />
+      <AdminContent />
+    </div>
+  );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({ state });
 
 const mapDispatchToProps = {};
 
 export const ConnectedAdmin = connect(
   mapStateToProps,
   mapDispatchToProps
-)(admin);
+)(Admin);

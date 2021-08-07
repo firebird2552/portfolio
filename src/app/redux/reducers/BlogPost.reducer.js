@@ -1,5 +1,5 @@
-import { initial } from 'lodash'
-import { Reducer } from 'redux'
+import { combineReducers } from 'redux'
+import * as actions from '../actions/Post.Actions'
 
 const InitialState = {
     BlogPosts: [
@@ -12,18 +12,21 @@ const InitialState = {
             date: "07/19/2021",
             likes: 245,
             comments: [{
+                approved: true,
                 id: "comment 1",
                 author: "Bob",
                 date: "04/12/2015",
                 comment: "Man this is an old project... lol"
             },
             {
+                approved: false,
                 id: "comment 2",
                 author: "Brenda",
                 date: "01/13/2021",
                 comment: "OMG! A Battle Cruiser"
             },
             {
+                approved: false,
                 id: "comment 3",
                 author: "Maru",
                 date: "07/28/2021",
@@ -57,7 +60,52 @@ const InitialState = {
 
 export const BlogPosts = (state = InitialState, action) => {
     switch (action.type) {
+        case actions.APPROVE_COMMENT: {
+            console.error("action", action)
+            let BlogPosts = state;
+            const { postId, commentId } = action.payload
+            console.error("BlogPosts", BlogPosts)
+            let postIndex = BlogPosts.findIndex(
+                (post) => post.id === postId
+
+            );
+            console.error("post index", postIndex)
+            let comments = BlogPosts[postIndex].comments;
+            let commentIndex = comments.findIndex(
+                (comment) => comment.id === commentId
+            );
+            console.error("EditPost -> specific comment", commentIndex);
+            comments[commentIndex] = { ...comments[commentIndex], approved: true };
+            console.error("EditPost -> comments", comments);
+
+            BlogPosts[postIndex] = { ...BlogPosts[postIndex], comments };
+            console.error("BlogPosts", BlogPosts)
+            return [...BlogPosts];
+        }
+        case actions.DENY_COMMENT:
+            console.error("action", action)
+            let BlogPosts = state;
+            const { postId, commentId } = action.payload
+            console.error("BlogPosts", BlogPosts)
+            let postIndex = BlogPosts.findIndex(
+                (post) => post.id === postId
+
+            );
+            console.error("post index", postIndex)
+            let comments = BlogPosts[postIndex].comments;
+            let commentIndex = comments.findIndex(
+                (comment) => comment.id === commentId
+            );
+            console.error("EditPost -> specific comment", commentIndex);
+            comments[commentIndex] = { ...comments[commentIndex], approved: false };
+            console.error("EditPost -> comments", comments);
+
+            BlogPosts[postIndex] = { ...BlogPosts[postIndex], comments };
+            console.error("BlogPosts", BlogPosts)
+            return [...newState];
+        case actions.DELETE_COMMENT:
+            return state
         default:
-            return state;
+            return state.BlogPosts;
     }
 }
